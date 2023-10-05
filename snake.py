@@ -8,7 +8,6 @@ RIGHT = 0
 
 
 class Snake:
-    
     def __init__(self):
         self.segments = []
         self.create_snake()
@@ -24,6 +23,13 @@ class Snake:
             new_segment.penup()
             new_segment.goto(position)
             self.segments.append(new_segment)
+
+    def reset(self):
+        for segment in self.segments: #loop through the current segments of the snake and move to off the screen
+            segment.goto(1000,1000)
+        self.segments.clear() #clears all the segments from the list
+        self.create_snake() #Initializes a new 3 segment snake
+        self.head = self.segments[0] #Makes the first segment the head of snake
 
     def extend(self):
         self.add_segment(self.segments[-1].position())
